@@ -25,6 +25,7 @@ function onFormSubmit(event) {
 
     return;
   }
+  console.log(formData);
 
   event.currentTarget.reset();
 
@@ -34,14 +35,7 @@ function onFormSubmit(event) {
 function onFormInput(event) {
   formData[event.target.name] = event.target.value;
 
-  localStorage.setItem(
-    'feedback-form-state',
-    JSON.stringify({
-      formData,
-      email: formInput.value,
-      message: formTextarea.value,
-    })
-  );
+  localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
 function outputForm() {
@@ -50,6 +44,8 @@ function outputForm() {
   const parsedForm = JSON.parse(savedForm);
 
   if (parsedForm) {
+    formData = parsedForm;
+
     formInput.value = parsedForm.email || '';
 
     formTextarea.value = parsedForm.message || '';
