@@ -30,6 +30,10 @@ function onFormSubmit(event) {
   event.currentTarget.reset();
 
   localStorage.removeItem('feedback-form-state');
+  formData = {
+    email: '',
+    message: '',
+  };
 }
 
 function onFormInput(event) {
